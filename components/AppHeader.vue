@@ -1,22 +1,22 @@
 <script setup lang="ts">
+const { push } = useRouter()
 
-const onHome = () => console.log("Click on home button")
+const onHome = () => push("/")
 
-const onAbout = () => console.log("Click on about button")
+const onAbout = () => push("/about")
 
-const onPortfolio = () => console.log("Click on portfolio")
+const onPortfolio = () => push("/portfolio")
 
-const onContact = () => console.log("Click on contact")
+const onContact = () => push("/contact")
 </script>
 
 <template>
   <header >
-    <section class="menu-option" @click="onHome">icon</section>
+    <NuxtLink to="/">
+      <img src="/logos/logo-on-primary.png" alt="App logo" />
+    </NuxtLink>
     <section class="menu">
-      <button class="menu-option" type="button" @click="onHome">
-        <span>Início</span>
-        <div></div>
-      </button>
+      <button class="menu-option" type="button" @click="onHome">Início</button>
       <button class="menu-option" type="button" @click="onAbout">Quem somos</button>
       <button class="menu-option" type="button" @click="onPortfolio">Portfólio</button>
       <button class="menu-option" type="button" @click="onContact">Contato</button>
@@ -54,6 +54,11 @@ header {
 .menu-option:hover {
   border-bottom: 1px solid white;
   cursor: pointer;
+}
+
+img {
+  height: 100px;
+  width: 140px;
 }
 
 </style>
