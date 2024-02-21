@@ -5,7 +5,7 @@ import cfg0 from "/Users/tulioassis/Dev/frontend/leite-de-pedra/app.config"
 
 declare const inlineConfig = {
   "nuxt": {
-    "buildId": "620916ed-267f-4000-912a-4eaf61506b06"
+    "buildId": "dev"
   }
 }
 type ResolvedAppConfig = Defu<typeof inlineConfig, [typeof cfg0]>
