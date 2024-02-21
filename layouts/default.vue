@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="flex-col justify-between" style="height: 100%;">
     <AppHeader />
     <slot />
     <AppFooter />
