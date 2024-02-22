@@ -73,3 +73,9 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+## Modules
+
+# nuxt-vitest
+
+https://nuxt.com/modules/vitest/
