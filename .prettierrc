@@ -1,4 +1,9 @@
 {
+  "printWidth": 100,
 	"tabWidth": 4,
-	"useTabs": true
+	"useTabs": true,
+  "semi": true,
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "arrowParens": "avoid"
 }
