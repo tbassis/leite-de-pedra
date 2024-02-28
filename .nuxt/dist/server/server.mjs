@@ -1,1 +1,1 @@
-export { default } from "file:///Users/tulioassis/Dev/frontend/leite-de-pedra/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs"
+export { default } from "file:///Users/tulioassis/Dev/frontend/leite-de-pedra/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs";
