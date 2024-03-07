@@ -264,7 +264,8 @@ const _inlineRuntimeConfig = {
 	public: {},
 };
 const ENV_PREFIX = "NITRO_";
-const ENV_PREFIX_ALT = _inlineRuntimeConfig.nitro.envPrefix ?? process.env.NITRO_ENV_PREFIX ?? "_";
+const ENV_PREFIX_ALT =
+	_inlineRuntimeConfig.nitro.envPrefix ?? process.env.NITRO_ENV_PREFIX ?? "_";
 const _sharedRuntimeConfig = _deepFreeze(_applyEnv(klona(_inlineRuntimeConfig)));
 function useRuntimeConfig(event) {
 	if (!event) {
@@ -281,7 +282,9 @@ function useRuntimeConfig(event) {
 _deepFreeze(klona(appConfig));
 function _getEnv(key) {
 	const envKey = snakeCase(key).toUpperCase();
-	return destr(process.env[ENV_PREFIX + envKey] ?? process.env[ENV_PREFIX_ALT + envKey]);
+	return destr(
+		process.env[ENV_PREFIX + envKey] ?? process.env[ENV_PREFIX_ALT + envKey],
+	);
 }
 function _isObject(input) {
 	return typeof input === "object" && !Array.isArray(input);
@@ -313,7 +316,9 @@ function _deepFreeze(object) {
 }
 new Proxy(/* @__PURE__ */ Object.create(null), {
 	get: (_, prop) => {
-		console.warn("Please use `useRuntimeConfig()` instead of accessing config directly.");
+		console.warn(
+			"Please use `useRuntimeConfig()` instead of accessing config directly.",
+		);
 		const runtimeConfig = useRuntimeConfig();
 		if (prop in runtimeConfig) {
 			return runtimeConfig[prop];
@@ -323,7 +328,10 @@ new Proxy(/* @__PURE__ */ Object.create(null), {
 });
 
 const serverAssets = [
-	{ baseName: "server", dir: "/Users/tulioassis/Dev/frontend/leite-de-pedra/server/assets" },
+	{
+		baseName: "server",
+		dir: "/Users/tulioassis/Dev/frontend/leite-de-pedra/server/assets",
+	},
 ];
 
 const assets = createStorage();
@@ -416,7 +424,11 @@ function defineCachedFunction(fn, opts = {}) {
 		const _resolve = async () => {
 			const isPending = pending[key];
 			if (!isPending) {
-				if (entry.value !== void 0 && (opts.staleMaxAge || 0) >= 0 && opts.swr === false) {
+				if (
+					entry.value !== void 0 &&
+					(opts.staleMaxAge || 0) >= 0 &&
+					opts.swr === false
+				) {
 					entry.value = void 0;
 					entry.integrity = void 0;
 					entry.mtime = void 0;
@@ -772,7 +784,9 @@ function normalizeCookieHeaders(headers) {
 }
 
 const config = useRuntimeConfig();
-const _routeRulesMatcher = toRouteMatcher(createRouter({ routes: config.nitro.routeRules }));
+const _routeRulesMatcher = toRouteMatcher(
+	createRouter({ routes: config.nitro.routeRules }),
+);
 function createRouteRulesHandler(ctx) {
 	return eventHandler(event => {
 		const routeRules = getRouteRules(event);
@@ -780,7 +794,11 @@ function createRouteRulesHandler(ctx) {
 			setHeaders(event, routeRules.headers);
 		}
 		if (routeRules.redirect) {
-			return sendRedirect(event, routeRules.redirect.to, routeRules.redirect.statusCode);
+			return sendRedirect(
+				event,
+				routeRules.redirect.to,
+				routeRules.redirect.statusCode,
+			);
 		}
 		if (routeRules.proxy) {
 			let target = routeRules.proxy.to;
@@ -886,7 +904,8 @@ const errorHandler = async function errorhandler(error, event) {
 		return send(event, JSON.stringify(errorObject));
 	}
 	const reqHeaders = getRequestHeaders(event);
-	const isRenderingError = event.path.startsWith("/__nuxt_error") || !!reqHeaders["x-nuxt-error"];
+	const isRenderingError =
+		event.path.startsWith("/__nuxt_error") || !!reqHeaders["x-nuxt-error"];
 	const res = isRenderingError
 		? null
 		: await useNitroApp()
@@ -942,7 +961,13 @@ const handlers = [
 		middleware: false,
 		method: undefined,
 	},
-	{ route: "/**", handler: _lazy_rLHoqr, lazy: true, middleware: false, method: undefined },
+	{
+		route: "/**",
+		handler: _lazy_rLHoqr,
+		lazy: true,
+		middleware: false,
+		method: undefined,
+	},
 ];
 
 function createNitroApp() {
@@ -974,14 +999,18 @@ function createNitroApp() {
 			});
 		},
 		onBeforeResponse: async (event, response) => {
-			await nitroApp.hooks.callHook("beforeResponse", event, response).catch(error => {
-				captureError(error, { event, tags: ["request", "response"] });
-			});
+			await nitroApp.hooks
+				.callHook("beforeResponse", event, response)
+				.catch(error => {
+					captureError(error, { event, tags: ["request", "response"] });
+				});
 		},
 		onAfterResponse: async (event, response) => {
-			await nitroApp.hooks.callHook("afterResponse", event, response).catch(error => {
-				captureError(error, { event, tags: ["request", "response"] });
-			});
+			await nitroApp.hooks
+				.callHook("afterResponse", event, response)
+				.catch(error => {
+					captureError(error, { event, tags: ["request", "response"] });
+				});
 		},
 	});
 	const router = createRouter$1({
@@ -1005,7 +1034,8 @@ function createNitroApp() {
 			if (envContext) {
 				Object.assign(event.context, envContext);
 			}
-			event.fetch = (req, init) => fetchWithEvent(event, req, init, { fetch: localFetch });
+			event.fetch = (req, init) =>
+				fetchWithEvent(event, req, init, { fetch: localFetch });
 			event.$fetch = (req, init) =>
 				fetchWithEvent(event, req, init, {
 					fetch: $fetch,
@@ -1027,7 +1057,10 @@ function createNitroApp() {
 	for (const h of handlers) {
 		let handler = h.lazy ? lazyEventHandler(h.handler) : h.handler;
 		if (h.middleware || !h.route) {
-			const middlewareBase = (config.app.baseURL + (h.route || "/")).replace(/\/+/g, "/");
+			const middlewareBase = (config.app.baseURL + (h.route || "/")).replace(
+				/\/+/g,
+				"/",
+			);
 			h3App.use(middlewareBase, handler);
 		} else {
 			const routeRules = getRouteRulesForPath(h.route.replace(/:\w+|\*\*/g, "_"));
@@ -1348,7 +1381,10 @@ const renderer = defineRenderHandler(async event => {
 		await ssrContext.nuxt?.hooks.callHook("app:error", _err);
 		throw _err;
 	});
-	await ssrContext.nuxt?.hooks.callHook("app:rendered", { ssrContext, renderResult: _rendered });
+	await ssrContext.nuxt?.hooks.callHook("app:rendered", {
+		ssrContext,
+		renderResult: _rendered,
+	});
 	if (ssrContext._renderResponse) {
 		return ssrContext._renderResponse;
 	}
@@ -1361,7 +1397,10 @@ const renderer = defineRenderHandler(async event => {
 	}
 	const inlinedStyles = [];
 	const NO_SCRIPTS = routeOptions.experimentalNoScripts;
-	const { styles, scripts } = getRequestDependencies(ssrContext, renderer.rendererContext);
+	const { styles, scripts } = getRequestDependencies(
+		ssrContext,
+		renderer.rendererContext,
+	);
 	head.push({ style: inlinedStyles });
 	{
 		const link = [];
@@ -1418,7 +1457,8 @@ const renderer = defineRenderHandler(async event => {
 			headEntryOptions,
 		);
 	}
-	const { headTags, bodyTags, bodyTagsOpen, htmlAttrs, bodyAttrs } = await renderSSRHead(head);
+	const { headTags, bodyTags, bodyTagsOpen, htmlAttrs, bodyAttrs } =
+		await renderSSRHead(head);
 	const htmlContext = {
 		island: isRenderingIsland,
 		htmlAttrs: htmlAttrs ? [htmlAttrs] : [],
@@ -1476,7 +1516,9 @@ function renderPayloadResponse(ssrContext) {
 	};
 }
 function renderPayloadJsonScript(opts) {
-	const contents = opts.data ? stringify(opts.data, opts.ssrContext._payloadReducers) : "";
+	const contents = opts.data
+		? stringify(opts.data, opts.ssrContext._payloadReducers)
+		: "";
 	const payload = {
 		type: "application/json",
 		id: opts.id,

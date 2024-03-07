@@ -13,7 +13,8 @@
 		"lint:prettier": "prettier --check .",
 		"lint": "npm run lint:js && npm run lint:prettier",
 		"lintfix": "npx prettier . --write --list-different . && npm run lint:js --fix",
-		"test": "vitest"
+		"test": "vitest --watch=false",
+		"test-watch": "vitest"
 	},
 	"dependencies": {
 		"@nuxt/eslint-config": "^0.2.0",

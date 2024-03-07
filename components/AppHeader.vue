@@ -17,7 +17,9 @@ const onContact = () => console.log("Click on contact");
 				<div></div>
 			</button>
 			<button class="menu-option" type="button" @click="onAbout">Quem somos</button>
-			<button class="menu-option" type="button" @click="onPortfolio">Portfólio</button>
+			<button class="menu-option" type="button" @click="onPortfolio">
+				Portfólio
+			</button>
 			<button class="menu-option" type="button" @click="onContact">Contato</button>
 		</section>
 	</header>

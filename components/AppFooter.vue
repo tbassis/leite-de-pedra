@@ -58,8 +58,8 @@ const socialNetworks: Ref<Array<{ [key: string]: string }>> = ref([
 		</article>
 		<section class="txt-secondary">
 			<p class="copyright">
-				© All rights reserved {{ currentDate.getFullYear() }}, LEITE DE PEDRA PRODUÇÃO
-				CULTURAL
+				© All rights reserved {{ currentDate.getFullYear() }}, LEITE DE PEDRA
+				PRODUÇÃO CULTURAL
 			</p>
 		</section>
 	</footer>
