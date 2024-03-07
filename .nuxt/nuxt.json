@@ -1,9 +1,9 @@
 {
-	"_hash": "7sRAyuBfnH",
-	"project": {
-		"rootDir": "/Users/tulioassis/Dev/frontend/leite-de-pedra"
-	},
-	"versions": {
-		"nuxt": "3.10.2"
-	}
+  "_hash": "7sRAyuBfnH",
+  "project": {
+    "rootDir": "/Users/tulioassis/Dev/frontend/leite-de-pedra"
+  },
+  "versions": {
+    "nuxt": "3.10.2"
+  }
 }
