@@ -5,5 +5,5 @@ export default defineNuxtConfig({
 		// SCSS file in the project
 		"~/assets/style/main.scss",
 	],
-	modules: ["nuxt-icon"],
+	modules: ["nuxt-icon", "@nuxtjs/tailwindcss"],
 });
