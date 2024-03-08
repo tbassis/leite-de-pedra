@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const currentDate = new Date();
+const currentDate = new Date().getFullYear();
 
 const socialNetworks: Ref<Array<{ [key: string]: string }>> = ref([
 	{
@@ -58,8 +58,7 @@ const socialNetworks: Ref<Array<{ [key: string]: string }>> = ref([
 		</article>
 		<section class="txt-secondary">
 			<p class="copyright">
-				© All rights reserved {{ currentDate.getFullYear() }}, LEITE DE PEDRA
-				PRODUÇÃO CULTURAL
+				© All rights reserved {{ currentDate }}, LEITE DE PEDRA PRODUÇÃO CULTURAL
 			</p>
 		</section>
 	</footer>
