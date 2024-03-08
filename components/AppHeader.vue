@@ -11,7 +11,7 @@ const onContact = () => console.log("Click on contact");
 <template>
 	<header>
 		<section class="menu-option" @click="onHome">icon</section>
-		<section class="menu">
+		<section class="menu flex-row">
 			<button class="menu-option" type="button" @click="onHome">
 				<span>Início</span>
 				<div></div>
@@ -35,8 +35,6 @@ header {
 }
 
 .menu {
-	display: flex;
-	flex-direction: row;
 	gap: 16px;
 }
 
